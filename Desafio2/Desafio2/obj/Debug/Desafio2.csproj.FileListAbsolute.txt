@@ -20,3 +20,14 @@ C:\Users\HP\Downloads\PED_Desafio2-main\PED_Desafio2-main\Desafio2\Desafio2\obj\
 C:\Users\HP\Downloads\PED_Desafio2-main\PED_Desafio2-main\Desafio2\Desafio2\obj\Debug\Desafio2.csproj.CoreCompileInputs.cache
 C:\Users\HP\Downloads\PED_Desafio2-main\PED_Desafio2-main\Desafio2\Desafio2\obj\Debug\Desafio2.exe
 C:\Users\HP\Downloads\PED_Desafio2-main\PED_Desafio2-main\Desafio2\Desafio2\obj\Debug\Desafio2.pdb
+C:\Users\Ludwin\Desktop\Desafio2\Desafio2\bin\Debug\Desafio2.exe.config
+C:\Users\Ludwin\Desktop\Desafio2\Desafio2\bin\Debug\Desafio2.exe
+C:\Users\Ludwin\Desktop\Desafio2\Desafio2\bin\Debug\Desafio2.pdb
+C:\Users\Ludwin\Desktop\Desafio2\Desafio2\obj\Debug\Desafio2.csproj.AssemblyReference.cache
+C:\Users\Ludwin\Desktop\Desafio2\Desafio2\obj\Debug\Desafio2.Form1.resources
+C:\Users\Ludwin\Desktop\Desafio2\Desafio2\obj\Debug\Desafio2.Inicio.resources
+C:\Users\Ludwin\Desktop\Desafio2\Desafio2\obj\Debug\Desafio2.Properties.Resources.resources
+C:\Users\Ludwin\Desktop\Desafio2\Desafio2\obj\Debug\Desafio2.csproj.GenerateResource.cache
+C:\Users\Ludwin\Desktop\Desafio2\Desafio2\obj\Debug\Desafio2.csproj.CoreCompileInputs.cache
+C:\Users\Ludwin\Desktop\Desafio2\Desafio2\obj\Debug\Desafio2.exe
+C:\Users\Ludwin\Desktop\Desafio2\Desafio2\obj\Debug\Desafio2.pdb
