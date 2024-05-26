@@ -173,6 +173,62 @@ namespace Desafio2
             camino.Reverse();
             return camino;
         }
+
+        public List<string> Anchura2(string inicio)
+        {
+            var visitados = new HashSet<Vertice>();
+            var cola = new Queue<Vertice>();
+            var recorrido = new List<string>();
+
+            cola.Enqueue(Vertices[inicio]);
+            visitados.Add(Vertices[inicio]);
+
+            while (cola.Count > 0)
+            {
+                var vertice = cola.Dequeue();
+                recorrido.Add(vertice.Nombre);
+
+                foreach (var arista in vertice.Adyacencias)
+                {
+                    if (!visitados.Contains(arista.Destino))
+                    {
+                        visitados.Add(arista.Destino);
+                        cola.Enqueue(arista.Destino);
+                    }
+                }
+            }
+
+            return recorrido;
+        }
+
+        public List<string> Profundidad2(string inicio)
+        {
+            var visitados = new HashSet<Vertice>();
+            var pila = new Stack<Vertice>();
+            var recorrido = new List<string>();
+
+            pila.Push(Vertices[inicio]);
+
+            while (pila.Count > 0)
+            {
+                var vertice = pila.Pop();
+                if (!visitados.Contains(vertice))
+                {
+                    visitados.Add(vertice);
+                    recorrido.Add(vertice.Nombre);
+
+                    foreach (var arista in vertice.Adyacencias)
+                    {
+                        if (!visitados.Contains(arista.Destino))
+                        {
+                            pila.Push(arista.Destino);
+                        }
+                    }
+                }
+            }
+
+            return recorrido;
+        }
     }
 
     public class PriorityQueue<TElement, TPriority> where TPriority : IComparable<TPriority>

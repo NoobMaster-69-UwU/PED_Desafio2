@@ -120,17 +120,48 @@ namespace Desafio2
         {
             comboBoxInicio.Items.AddRange(grafo.Vertices.Keys.ToArray());
             comboBoxFin.Items.AddRange(grafo.Vertices.Keys.ToArray());
+
             comboBoxInicio.SelectedIndex = 0;
             comboBoxFin.SelectedIndex = 0;
+
+            foreach (var vertice in grafo.Vertices.Values)
+            {
+                puntoInicio2.Items.Add(vertice.Nombre);
+            }
         }
 
+        private List<string> _currentPath;
+        private int _currentIndex;
+        private Timer _timer;
 
         private void DibujarGrafo(List<string> recorrido)
         {
+            _currentPath = recorrido ?? new List<string>();
+            _currentIndex = 0;
+
+            // Configurar y comenzar el temporizador
+            _timer = new Timer();
+            _timer.Interval = 500; // Intervalo de tiempo en milisegundos (0.5 segundos)
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (_currentIndex >= _currentPath.Count)
+            {
+                // Si hemos recorrido toda la ruta, detener el temporizador
+                _timer.Stop();
+                _timer.Dispose();
+                return;
+            }
+
+            // Obtener el nombre del nodo actual
+            string currentNodeName = _currentPath[_currentIndex];
+
+            // Dibujar el grafo con el nodo actual coloreado
             Bitmap bitmap = new Bitmap(pictureBoxGrafo.Width, pictureBoxGrafo.Height);
             Graphics g = Graphics.FromImage(bitmap);
-
-            var recorridoSet = new HashSet<string>(recorrido ?? new List<string>());
 
             // Dibujar aristas
             foreach (var vertice in grafo.Vertices.Values)
@@ -139,7 +170,7 @@ namespace Desafio2
                 foreach (var arista in vertice.Adyacencias)
                 {
                     Point pos2 = ObtenerPosicion(arista.Destino.Nombre);
-                    bool esParteDelRecorrido = recorridoSet.Contains(vertice.Nombre) && recorridoSet.Contains(arista.Destino.Nombre);
+                    bool esParteDelRecorrido = _currentPath.Contains(vertice.Nombre) && _currentPath.Contains(arista.Destino.Nombre);
                     Pen pen = esParteDelRecorrido ? new Pen(Color.Red, 2) : Pens.Black;
                     g.DrawLine(pen, pos1, pos2);
                     g.DrawString(arista.Distancia.ToString(), new Font("Arial", 8), Brushes.Black, (pos1.X + pos2.X) / 2, (pos1.Y + pos2.Y) / 2);
@@ -150,14 +181,19 @@ namespace Desafio2
             foreach (var vertice in grafo.Vertices.Values)
             {
                 Point pos = ObtenerPosicion(vertice.Nombre);
-                bool esParteDelRecorrido = recorridoSet.Contains(vertice.Nombre);
-                Brush brush = esParteDelRecorrido ? Brushes.Red : Brushes.LightBlue;
+                Brush brush = Brushes.LightBlue;
+                if (vertice.Nombre == currentNodeName)
+                {
+                    brush = Brushes.Green; // Cambiar el color del nodo actual a verde
+                }
                 g.FillEllipse(brush, pos.X - 10, pos.Y - 10, 20, 20);
                 g.DrawEllipse(Pens.Black, pos.X - 10, pos.Y - 10, 20, 20);
                 g.DrawString(vertice.Nombre, new Font("Arial", 8), Brushes.Black, pos.X + 12, pos.Y);
             }
 
             pictureBoxGrafo.Image = bitmap;
+
+            _currentIndex++;
         }
 
         private Point ObtenerPosicion(string nombre)
@@ -190,10 +226,26 @@ namespace Desafio2
 
         private void button4_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Inicio inicio = new Inicio();
-            inicio.Show();
+            
            
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+            string inicio = puntoInicio2.SelectedItem.ToString();
+            var recorrido = grafo.Anchura2(inicio);
+            MessageBox.Show("Recorrido en Anchura: " + string.Join(" -> ", recorrido));
+            DibujarGrafo(recorrido);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+            string inicio = puntoInicio2.SelectedItem.ToString();
+            var recorrido = grafo.Profundidad2(inicio);
+            MessageBox.Show("Recorrido en Anchura : " + string.Join(" -> ", recorrido));
+            DibujarGrafo(recorrido);
         }
     }
 }

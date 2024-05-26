@@ -19,32 +19,9 @@ namespace Desafio2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
+            this.Hide();
+            Form1 form1 = new Form1();
+            form1.Show();
         }
     }
 }
